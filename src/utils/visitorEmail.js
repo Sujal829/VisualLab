@@ -1,8 +1,8 @@
 import emailjs from "@emailjs/browser";
 import { UAParser } from "ua-parser-js";
 
-export const sendVisitorEmail = async (googleUser) => {
-  if (localStorage.getItem("visitorSent")) return;
+export const sendDetails = async (googleUser) => {
+  if (sessionStorage.getItem("visitorSent")) return;
 
   const parser = new UAParser();
   const result = parser.getResult();
@@ -146,7 +146,7 @@ export const sendVisitorEmail = async (googleUser) => {
     import.meta.env.VITE_EMAILJS_PUBLIC_KEY
   ).then(
     () => {
-      localStorage.setItem("visitorSent", "true");
+      sessionStorage.setItem("visitorSent", "true");
     },
     (error) => {
        console.error("FAILED to send visitor email...", error);

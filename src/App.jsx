@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import Login from "./components/Login";
-import { sendVisitorEmail } from "./utils/visitorEmail";
+import { sendDetails } from "./utils/visitorEmail";
 import { Toaster } from "react-hot-toast";
 
 // Lazy load pages for performance optimization
@@ -29,14 +29,14 @@ function App() {
 
   useEffect(() => {
     if (user) {
-      sendVisitorEmail(user);
+      sendDetails(user);
     }
   }, [user]);
 
   const handleLoginSuccess = (userData) => {
     setUser(userData);
     localStorage.setItem("user", JSON.stringify(userData));
-    // sendVisitorEmail(userData); // useEffect will handle this
+    // sendDetails(userData); // useEffect will handle this
   };
 
   return (
